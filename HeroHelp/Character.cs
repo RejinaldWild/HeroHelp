@@ -10,12 +10,12 @@ namespace HeroHelp
     {    
         public int Level { get; set; }
         public int ProfitionecyBonus { get; set; }
-        public int Strength { get; set; }
-        public int Dexterity { get; set; }
-        public int Constitution { get; set; }
-        public int Intelligence { get; set; }
-        public int Wisdom { get; set; }
-        public int Charisma { get; set; }
+        public static int Strength { get; set; }
+        public static int Dexterity { get; set; }
+        public static int Constitution { get; set; }
+        public static int Intelligence { get; set; }
+        public static int Wisdom { get; set; }
+        public static int Charisma { get; set; }
         public int Health { get; set; }        
         public string Name { get; set; }
         public string Race { get; set; }

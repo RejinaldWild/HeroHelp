@@ -8,16 +8,53 @@ namespace HeroHelp
 {
     class SettingAbilities
     {
-        public static
-
-        public static int SetAbilities()
+        private static List<int> Ability = new List<int>();
+        public static void SetProps()
         {
-            for (int i = 0; i < 6; i++)
-            {
-                Console.WriteLine("Какое значение вы хотите поставить в {0}", Enum.GetName(typeof(EAbility), i));
-                string ability = Console.ReadLine();
-                abilityNums[i] = SettingAbilities.SetAbilities(ability);
-            }
+            Character.Strength = Ability[0];
+            Character.Dexterity = Ability[1];
+            Character.Constitution = Ability[2];
+            Character.Intelligence = Ability[3];
+            Character.Wisdom = Ability[4];
+            Character.Charisma = Ability[5];
         }
+        public static void SetAbilitiesByUser(List<int> abilities)
+        {   
+            int ability = 0;
+            int temp = 0;
+            while (abilities.Count != 0)
+            {
+                for (int i = 0; i < Enum.GetNames(typeof(EAbility)).Length; i++)
+                {
+                    Console.WriteLine("Какое значение вы хотите поставить в {0}", Enum.GetName(typeof(EAbility), i));
+                    ability = Int32.Parse(Console.ReadLine()); //try catch format exception                    
+                    foreach (int item in abilities)
+                    {
+                        if (item == ability)
+                        {
+                            temp = item;
+                            break;
+                        }
+                        else temp = 0;
+                    }
+                    if (temp == ability)
+                    {
+                        Ability.Add(ability);
+                        abilities.Remove(ability);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели неимеющееся значение!");
+                        i--;
+                    }
+                    if (abilities.Count != 0)
+                    {   
+                        OutputUser.ShowRestAbilities(abilities);
+                    }
+                }
+            }
+            OutputUser.ShowSetAbilities(Ability);
+        }
+
     }
 }

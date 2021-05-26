@@ -50,5 +50,24 @@ namespace HeroHelp
             }
             Console.WriteLine();
         }
+
+        public static void ShowRestAbilities(List<int> array)
+        {
+            Console.WriteLine("Ваши оставшиеся значения характеристик:");
+            foreach (int i in array)
+            {
+                Console.Write(i + "\t");
+            }
+            Console.WriteLine();
+        }
+
+        public static void ShowSetAbilities(List<int> array)
+        {
+            Console.WriteLine("Ваши значения характеристик:");
+            for(int i = 0; i < Enum.GetNames(typeof(EAbility)).Length; i++)
+            {
+                Console.WriteLine(Enum.GetName(typeof(EAbility), i)+"\t"+array[i]); // выровнять???
+            }
+        }
     }
 }

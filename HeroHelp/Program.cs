@@ -38,6 +38,11 @@ namespace HeroHelp
             Character user = new Character();
             ChoiceSystemAbilities.Choose();
 
+            // установка характеристик по выбранной системе
+
+            SettingAbilities.SetAbilitiesByUser(ChoiceSystemAbilities.abilitiesNumbers);
+            SettingAbilities.SetProps();
+
         }
     }
 }
