@@ -7,56 +7,44 @@ using System.Threading.Tasks;
 namespace HeroHelp
 {
     internal class RandomAbilities
-    {
-        //4d6 - 1d6
-        private static int GetMin(int[] numbs) // Get minimum of rolling d6 dice
-        {
-            int min = 7; // max possible = 6;
-            for (int i = 0; i < numbs.Length; i++)
-            {
-                if (numbs[i] < min)
-                {
-                    min = numbs[i];
-                }
-            }
-            return min;
-        }
+    {        
+        private static Random RollRandom = new Random();
 
-        private static int[] RollRandom()
+        // бросок кубов на 4д6
+        private static List<int> RollRandoms()
         {
-            int[] result = new int[4];
-            Random RollRandom = new Random();
+            List<int> result = new List<int>();
             for (int i = 0; i < 4; i++)
             {
-                result[i] = RollRandom.Next(1,6);
+                result.Add(RollRandom.Next(1,6));
             }
             return result;
         }
 
-        private static int[] GetRolls()
+        // вычитаем наименьшее значение из 4д6
+        private static List<int> GetRolls()
         {
-            int[] abilities = RollRandom();
-            int minAbility = GetMin(abilities);
-            int[] resultAbilities = new int[abilities.Length - 1];            
-            Array.Sort(abilities);
-            for (int i = 1; i < abilities.Length; i++)
+            List<int> abilities = RollRandoms();            
+            List<int> resultAbilities = new List<int>();
+            int count = 0;
+            for (int i = 0; i < abilities.Count; i++)
             {
-                resultAbilities[i - 1] = abilities[i];
-            }
+                resultAbilities.Add(abilities[i]);
+                if (i == abilities.Min() && count ==0)
+                {
+                    resultAbilities.Remove(resultAbilities.Min());
+                    count++;
+                }
+            }            
             return resultAbilities;
         }
 
         public static int GetAbility()
         {
-            int ability = 0;
-            int[] rolls = GetRolls();
-            for (int i = 0; i < rolls.Length; i++)
+            int ability = GetRolls().Sum();
+            while (ability <= 6 || ability > 18)
             {
-                ability += rolls[i];
-            }
-            if (ability <= 6 || ability > 18)
-            {
-                GetAbility();
+                ability = GetRolls().Sum();
             }
             return ability;
         }

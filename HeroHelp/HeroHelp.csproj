@@ -43,11 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abilities.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="ChoiceSetting.cs" />
     <Compile Include="ChoiceSystemAbilities.cs" />
+    <Compile Include="OutputUser.cs" />
+    <Compile Include="PointsBuyAbilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomAbilities.cs" />
+    <Compile Include="SettingAbilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
