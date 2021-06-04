@@ -10,8 +10,7 @@ namespace HeroHelp
     {
         public static List<int> abilitiesNumbers = new List<int>();
         public static List<int> Choose()
-        {
-            //List<int> abilitiesNumbers = new List<int>();
+        {   
             while (abilitiesNumbers != null)
             {
                 switch (Console.ReadLine())
@@ -30,7 +29,6 @@ namespace HeroHelp
             }
             return abilitiesNumbers;
         }
-        
 
         //выбор стандартных характеристик
         private static List<int> GetStandart()
@@ -60,9 +58,9 @@ namespace HeroHelp
         // выбор покупки характеристик за очки
         private static List<int> GetPointsBuy()
         {
-            abilitiesNumbers = new List<int>();
+            abilitiesNumbers = new List<int>() {8,8,8,8,8,8};
             PointsBuyAbilities.ShowCostAbility();
-            //PointsBuyAbilities.BuyAbilities();
+            abilitiesNumbers = PointsBuyAbilities.BuyAbilities(abilitiesNumbers);
             return abilitiesNumbers;
         }
 

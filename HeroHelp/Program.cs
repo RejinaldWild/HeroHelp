@@ -31,7 +31,6 @@ namespace HeroHelp
             // выбор сеттинга 1. Днд 2. ВК 3. Выход
 
             OutputUser.ShowSystems();
-            
 
             // выбор 1. Стандарт 2. 4д6-1д6 3. купить за очки (27)
 
@@ -39,9 +38,7 @@ namespace HeroHelp
             ChoiceSystemAbilities.Choose();
 
             // установка характеристик по выбранной системе
-
-            SettingAbilities.SetAbilitiesByUser(ChoiceSystemAbilities.abilitiesNumbers);
-            SettingAbilities.SetProps();
+            SettingAbilities.SetProps(SettingAbilities.SetAbilitiesByUser(ChoiceSystemAbilities.abilitiesNumbers)); //не перебор?
 
         }
     }

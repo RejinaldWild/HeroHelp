@@ -8,11 +8,45 @@ namespace HeroHelp
 {
     internal class PointsBuyAbilities
     {
-        public static List<int> BuyAbilities()
+        public static List<int> BuyAbilities(List<int> abilities)
         {
-            List<int> abilitiesNumbers = new List<int>();
+            List<int> Ability = new List<int>();
             int points = 27;
-            return abilitiesNumbers;
+            int ability = 0;
+            int temp = 0;
+            while (points >= 0)
+            {
+                for (int i = 0; i < Enum.GetNames(typeof(EAbility)).Length; i++) // dictionary for Abilities -> Ability["Charisma"] = 15?
+                {
+                    Console.WriteLine("Какое значение вы хотите поставить в {0}", Enum.GetName(typeof(EAbility), i));
+                    ability = Int32.Parse(Console.ReadLine()); //try catch format exception                    
+                    foreach (int item in abilities)
+                    {
+                        if (item == ability)
+                        {
+                            temp = item;
+                            break;
+                        }
+                        else temp = 0;
+                    }
+                    if (temp == ability)
+                    {
+                        Ability.Add(ability);
+                        abilities.Remove(ability);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели неимеющееся значение!");
+                        i--;
+                    }
+                    if (abilities.Count != 0)
+                    {
+                        OutputUser.ShowRestAbilities(abilities);
+                    }
+                }
+            }
+            OutputUser.ShowSetAbilities(Ability);
+            return Ability;
         }
 
         public static void ShowCostAbility()
@@ -33,6 +67,7 @@ namespace HeroHelp
                 }
                 Console.WriteLine(val[i]+" | "+costAbility[i]);
             }            
-        }  
+        } 
+        // метод показывающий остаток points
     }
 }

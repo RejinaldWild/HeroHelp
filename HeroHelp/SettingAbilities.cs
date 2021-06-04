@@ -8,52 +8,42 @@ namespace HeroHelp
 {
     class SettingAbilities
     {
-        private static List<int> Ability = new List<int>();
-        public static void SetProps()
+        public static void SetProps(List<int> ability)
         {
-            Character.Strength = Ability[0];
-            Character.Dexterity = Ability[1];
-            Character.Constitution = Ability[2];
-            Character.Intelligence = Ability[3];
-            Character.Wisdom = Ability[4];
-            Character.Charisma = Ability[5];
+            Character.Strength = ability[0];
+            Character.Dexterity = ability[1];
+            Character.Constitution = ability[2];
+            Character.Intelligence = ability[3];
+            Character.Wisdom = ability[4];
+            Character.Charisma = ability[5];
         }
-        public static void SetAbilitiesByUser(List<int> abilities)
-        {   
+        public static List<int> SetAbilitiesByUser(List<int> abilityValues)
+        {
+            List<int> Ability = new List<int>();
             int ability = 0;
-            int temp = 0;
-            while (abilities.Count != 0)
-            {
-                for (int i = 0; i < Enum.GetNames(typeof(EAbility)).Length; i++)
+            int i = 0;
+            while (abilityValues.Count != 0)
+            {   
+                Console.WriteLine("Какое значение вы хотите поставить в {0}", Enum.GetName(typeof(EAbility), i));
+                ability = Int32.Parse(Console.ReadLine()); //try catch format exception                  
+                if (abilityValues.IndexOf(ability)!=-1)
                 {
-                    Console.WriteLine("Какое значение вы хотите поставить в {0}", Enum.GetName(typeof(EAbility), i));
-                    ability = Int32.Parse(Console.ReadLine()); //try catch format exception                    
-                    foreach (int item in abilities)
-                    {
-                        if (item == ability)
-                        {
-                            temp = item;
-                            break;
-                        }
-                        else temp = 0;
-                    }
-                    if (temp == ability)
-                    {
-                        Ability.Add(ability);
-                        abilities.Remove(ability);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Вы ввели неимеющееся значение!");
-                        i--;
-                    }
-                    if (abilities.Count != 0)
-                    {   
-                        OutputUser.ShowRestAbilities(abilities);
-                    }
+                    Ability.Add(ability);
+                    abilityValues.Remove(ability);
+                    i++;
                 }
+                else
+                {
+                    Console.WriteLine("Вы ввели неимеющееся значение!");
+                }
+                if (abilityValues.Count != 0)
+                {   
+                    OutputUser.ShowRestAbilities(abilityValues);
+                }
+                
             }
             OutputUser.ShowSetAbilities(Ability);
+            return Ability;
         }
 
     }
